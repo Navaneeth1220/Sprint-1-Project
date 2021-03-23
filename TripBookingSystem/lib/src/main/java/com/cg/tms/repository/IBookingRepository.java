@@ -5,7 +5,7 @@ import java.util.List;
 import com.cg.tms.entities.Booking;
 import com.cg.tms.exceptions.BookingNotFoundException;
 
-public interface IBookingRepository {
+public interface IBookingRepository  {
 	
 	
 	public  Booking  makeBooking(Booking booking);
