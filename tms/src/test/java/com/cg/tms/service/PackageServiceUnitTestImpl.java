@@ -17,7 +17,6 @@ import com.cg.tms.exceptions.*;
 import java.util.Optional;
 import java.util.List;
 
-
 @ExtendWith(MockitoExtension.class)
 public class PackageServiceUnitTestImpl {
 
@@ -54,7 +53,7 @@ public class PackageServiceUnitTestImpl {
 	}
 
 	/**
-	 * Scenario 1b : Add Package Failure
+	 * Scenario 1b: Add Package Failure
 	 */
 	@Test
 	public void testAdd_Package2() {
@@ -70,7 +69,7 @@ public class PackageServiceUnitTestImpl {
 	}
 
 	/**
-	 * Scenario 2a : PackageId Validation - Success Scenario
+	 * Scenario 2a: PackageId Validation - Success Scenario
 	 * 
 	 */
 	@Test
@@ -82,7 +81,7 @@ public class PackageServiceUnitTestImpl {
 	}
 
 	/**
-	 * Scenario 2b : PackageId Validation - Negative PackageId
+	 * Scenario 2b: PackageId Validation - Negative PackageId
 	 * 
 	 */
 	@Test
@@ -94,7 +93,7 @@ public class PackageServiceUnitTestImpl {
 	}
 
 	/**
-	 * Scenario 3a : PackageName Validation - Empty Input
+	 * Scenario 3a: PackageName Validation - Empty Input
 	 * 
 	 */
 	@Test
@@ -107,7 +106,7 @@ public class PackageServiceUnitTestImpl {
 	}
 
 	/**
-	 * Scenario 3b : PackageName Validation - Null Input
+	 * Scenario 3b: PackageName Validation - Null Input
 	 * 
 	 */
 
@@ -121,7 +120,7 @@ public class PackageServiceUnitTestImpl {
 	}
 
 	/**
-	 * Scenario 3c : PackageName Validation - Name Not Empty
+	 * Scenario 3c: PackageName Validation - Name Not Empty
 	 * 
 	 */
 	@Test
@@ -132,7 +131,7 @@ public class PackageServiceUnitTestImpl {
 	}
 
 	/**
-	 * Scenario 4a : PackageDescription Validation - Empty Input
+	 * Scenario 4a: PackageDescription Validation - Empty Input
 	 * 
 	 */
 	@Test
@@ -145,7 +144,7 @@ public class PackageServiceUnitTestImpl {
 	}
 
 	/**
-	 * Scenario 4b : PackageDescription Validation - Null Input
+	 * Scenario 4b: PackageDescription Validation - Null Input
 	 * 
 	 */
 	@Test
@@ -158,7 +157,7 @@ public class PackageServiceUnitTestImpl {
 	}
 
 	/**
-	 * Scenario 4c : PackageDescription Validation - Length Criteria Not
+	 * Scenario 4c: PackageDescription Validation - Length Criteria Not
 	 * Satisfied(should be greater than 10)
 	 * 
 	 */
@@ -172,7 +171,7 @@ public class PackageServiceUnitTestImpl {
 	}
 
 	/**
-	 * Scenario 4d : PackageDescription Validation - Successful
+	 * Scenario 4d: PackageDescription Validation - Successful
 	 * 
 	 */
 	@Test
@@ -184,7 +183,7 @@ public class PackageServiceUnitTestImpl {
 	}
 
 	/**
-	 * Scenario 5a : PackageType Validation - Empty Input
+	 * Scenario 5a: PackageType Validation - Empty Input
 	 * 
 	 */
 	@Test
@@ -197,7 +196,7 @@ public class PackageServiceUnitTestImpl {
 	}
 
 	/**
-	 * Scenario 5b : PackageType Validation - Null Input
+	 * Scenario 5b: PackageType Validation - Null Input
 	 * 
 	 */
 	@Test
@@ -210,8 +209,8 @@ public class PackageServiceUnitTestImpl {
 	}
 
 	/**
-	 * Scenario 5c : PackageType Validation - Length Criteria Not Satisfied(should
-	 * be less than 10)
+	 * Scenario 5c: PackageType Validation - Length Criteria Not Satisfied(should be
+	 * less than 10)
 	 * 
 	 */
 	@Test
@@ -224,7 +223,7 @@ public class PackageServiceUnitTestImpl {
 	}
 
 	/**
-	 * Scenario 5d : PackageType Validation - Successful
+	 * Scenario 5d: PackageType Validation - Successful
 	 * 
 	 */
 	@Test
@@ -236,7 +235,7 @@ public class PackageServiceUnitTestImpl {
 	}
 
 	/**
-	 * Scenario 6a : Package foundById
+	 * Scenario 6a: Package foundById
 	 * 
 	 */
 	@Test
@@ -252,7 +251,7 @@ public class PackageServiceUnitTestImpl {
 	}
 
 	/**
-	 * Scenario 6b :Package not foundById
+	 * Scenario 6b: Package not foundById
 	 */
 	@Test
 	public void testSearchPackageById_2() {
@@ -265,15 +264,21 @@ public class PackageServiceUnitTestImpl {
 	}
 
 	/**
-	 * Scenario 7a: Package Cancelled
+	 * Scenario 7a: Package Deleted
 	 */
-	/*
-	 * @Test public void testDeletePackageById_1() {
-	 * 
-	 * 
-	 * 
-	 * }
-	 */
+
+	@Test
+	public void testDeletePackageById_1() {
+
+		int packageId = 3;
+		Package pack = mock(Package.class);
+		Optional<Package> optional = Optional.of(pack);
+		when(packageRepository.findById(packageId)).thenReturn(optional);
+		Package result = packageService.deletePackage(packageId);
+		Assertions.assertEquals(pack, result);
+		verify(packageRepository).findById(packageId);
+
+	}
 
 	/**
 	 * Scenario 8a: View All Packages Successful
