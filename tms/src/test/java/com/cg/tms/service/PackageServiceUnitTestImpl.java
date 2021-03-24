@@ -28,7 +28,7 @@ public class PackageServiceUnitTestImpl {
 	PackageServiceImpl packageService;
 
 	/**
-	 * Scenario 1a: Add Package Successfully
+	 * Scenario 1a: Add Package:Success
 	 */
 	@Test
 	public void testAdd_Package1() {
@@ -53,7 +53,7 @@ public class PackageServiceUnitTestImpl {
 	}
 
 	/**
-	 * Scenario 1b: Add Package Failure
+	 * Scenario 1b: Add Package:Failure
 	 */
 	@Test
 	public void testAdd_Package2() {
@@ -69,7 +69,7 @@ public class PackageServiceUnitTestImpl {
 	}
 
 	/**
-	 * Scenario 2a: PackageId Validation - Success Scenario
+	 * Scenario 2a: PackageId Validation:Success
 	 * 
 	 */
 	@Test
@@ -171,7 +171,7 @@ public class PackageServiceUnitTestImpl {
 	}
 
 	/**
-	 * Scenario 4d: PackageDescription Validation - Successful
+	 * Scenario 4d: PackageDescription Validation:Success
 	 * 
 	 */
 	@Test
@@ -223,7 +223,7 @@ public class PackageServiceUnitTestImpl {
 	}
 
 	/**
-	 * Scenario 5d: PackageType Validation - Successful
+	 * Scenario 5d: PackageType Validation:Success
 	 * 
 	 */
 	@Test
@@ -235,7 +235,7 @@ public class PackageServiceUnitTestImpl {
 	}
 
 	/**
-	 * Scenario 6a: Package foundById
+	 * Scenario 6a: Package foundById to Search:Success
 	 * 
 	 */
 	@Test
@@ -251,7 +251,7 @@ public class PackageServiceUnitTestImpl {
 	}
 
 	/**
-	 * Scenario 6b: Package not foundById
+	 * Scenario 6b: Package not foundById to Search:Failure
 	 */
 	@Test
 	public void testSearchPackageById_2() {
@@ -264,7 +264,7 @@ public class PackageServiceUnitTestImpl {
 	}
 
 	/**
-	 * Scenario 7a: Package Deleted
+	 * Scenario 7a: Package foundById to Delete:Success
 	 */
 
 	@Test
@@ -279,9 +279,23 @@ public class PackageServiceUnitTestImpl {
 		verify(packageRepository).findById(packageId);
 
 	}
+	
+	/**
+	 * Scenario 7b: Package not foundById to Delete:Failure
+	 */
+	@Test
+	public void testDeletePackageById_2() {
+
+		int packageId = 50;
+		Optional<Package> optional = Optional.empty();
+		when(packageRepository.findById(packageId)).thenReturn(optional);
+		Executable executable = () -> packageService.deletePackage(packageId);
+		Assertions.assertThrows(PackageNotFoundException.class, executable);
+	}
+
 
 	/**
-	 * Scenario 8a: View All Packages Successful
+	 * Scenario 8a: View All Packages:Success
 	 */
 	@Test
 	public void testViewAllPackages() {
@@ -293,5 +307,7 @@ public class PackageServiceUnitTestImpl {
 		verify(packageRepository).findAll();
 
 	}
+	
+	
 
 }
