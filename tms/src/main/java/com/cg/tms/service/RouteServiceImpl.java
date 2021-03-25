@@ -18,7 +18,7 @@ import com.cg.tms.repository.IRouteRepository;
 public class RouteServiceImpl implements IRouteService{
 
 	@Autowired
-	IRouteRepository repository;
+	private IRouteRepository repository;
 
 	@Override
 	public Route addRoute(Route route) {
@@ -79,8 +79,8 @@ public class RouteServiceImpl implements IRouteService{
 
 	@Override
 	public List<Route> viewRouteList() {
-		
-		return null;
+		List<Route> routeList = repository.findAll();
+		return routeList;
 	}
 	
 	

@@ -7,6 +7,7 @@ import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Assertions;
@@ -158,7 +159,7 @@ public class RouteServiceImplTest {
 	/*
 	 * Validate Route ID: null
 	 */
-	
+
 	@Test
 	public void testValidateRouteId_2() {
 
@@ -178,7 +179,7 @@ public class RouteServiceImplTest {
 		service.validateRouteId(routeId);
 
 	}
-	
+
 	/*
 	 * Validate Route From: Empty
 	 */
@@ -191,7 +192,7 @@ public class RouteServiceImplTest {
 		Assertions.assertThrows(InvalidRouteFromException.class, executable);
 
 	}
-	
+
 	/*
 	 * Validate Route From: null
 	 */
@@ -208,7 +209,7 @@ public class RouteServiceImplTest {
 	/*
 	 * Validate Route From: Success
 	 */
-	
+
 	@Test
 	public void testValidateRouteFrom_3() {
 
@@ -216,11 +217,10 @@ public class RouteServiceImplTest {
 		service.validateRouteFrom(routeFrom);
 
 	}
-	
+
 	/*
 	 * Validate Route To: Empty
 	 */
-
 
 	@Test
 	public void testValidateRouteTo_1() {
@@ -230,11 +230,10 @@ public class RouteServiceImplTest {
 		Assertions.assertThrows(InvalidRouteToException.class, executable);
 
 	}
-	
+
 	/*
 	 * Validate Route To: null
 	 */
-
 
 	@Test
 	public void testValidateRouteTo_2() {
@@ -244,11 +243,10 @@ public class RouteServiceImplTest {
 		Assertions.assertThrows(InvalidRouteToException.class, executable);
 
 	}
-	
+
 	/*
 	 * Validate Route To: Success
 	 */
-
 
 	@Test
 	public void testValidateRouteTo_3() {
@@ -258,4 +256,40 @@ public class RouteServiceImplTest {
 
 	}
 
+	/*
+	 * Update Route: Success Scenario
+	 */
+	@Test
+	public void testUpdateRoute() {
+		String routeId = "R1";
+		String routeFrom = "Delhi";
+		String routeTo = "Himachal";
+		double fare = 600;
+		Route route = mock(Route.class);
+		when(route.getRouteId()).thenReturn(routeId);
+		when(route.getRouteFrom()).thenReturn(routeFrom);
+		when(route.getRouteTo()).thenReturn(routeTo);
+		when(route.getFare()).thenReturn(fare);
+		Optional<Route> optional = Optional.of(route);
+		when(repository.findById(routeId)).thenReturn(optional);
+		doNothing().when(service).validateRouteId(routeId);
+		when(repository.save(route)).thenReturn(route);
+		Route result = service.updateRoute(route);
+		Assertions.assertNotNull(result);
+		Assertions.assertSame(result, route);
+
+	}
+
+	/*
+	 * View Route List: Success Scenario
+	 */
+	@Test
+	public void testViewRouteList() {
+		List<Route> routes = mock(List.class);
+		when(repository.findAll()).thenReturn(routes);
+		List<Route> result = service.viewRouteList();
+		Assertions.assertSame(routes, result);
+		verify(repository).findAll();
+
+	}
 }

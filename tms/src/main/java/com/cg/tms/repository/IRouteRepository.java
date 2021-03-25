@@ -13,7 +13,7 @@ public interface IRouteRepository {
 	Route save(Route route);
 	Optional<Route> findById(String routeId);
 	void deleteById (String routeId);
-	
+	List<Route> findAll();
 	
 	/*public  Route  addRoute(Route route);
 	public  Route  updateRoute(Route route) throws RouteNotFoundException;
