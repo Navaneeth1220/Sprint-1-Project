@@ -272,10 +272,11 @@ public class PackageServiceUnitTestImpl {
 
 		Package pack = mock(Package.class);
 		Optional<Package> optional = Optional.of(pack);
-		when(packageRepository.existsById(pack.getPackageId())).thenReturn(true);
+		when(packageRepository.findById(pack.getPackageId())).thenReturn(optional);
 		doNothing().when(packageRepository).deleteById(pack.getPackageId());
-		verify(packageRepository).findById(pack.getPackageId());
-
+		Package result = packageService.deletePackage(pack.getPackageId());
+		Assertions.assertEquals(pack, result);
+		verify(packageRepository).deleteById(pack.getPackageId());
 	}
 
 	/**
