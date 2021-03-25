@@ -1,10 +1,18 @@
 package com.cg.tms.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.List;
+
+import java.util.Optional;
+
+
 
 import com.cg.tms.entities.Route;
 
-public interface IRouteRepository extends JpaRepository<Route,String>{
+public interface IRouteRepository {
+	
+	Route save(Route route);
+	Optional<Route> findById(String routeId);
+	void deleteById (String routeId);
 	
 	
 	/*public  Route  addRoute(Route route);

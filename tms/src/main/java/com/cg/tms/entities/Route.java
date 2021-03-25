@@ -1,23 +1,22 @@
 package com.cg.tms.entities;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-@Entity
+
+import java.time.LocalDateTime;
+import java.util.Objects;
+
+
 public class Route {
-    @Id
+	
 	private String routeId;
 	private String routeFrom;
 	private String routeTo;
-	
-	@OneToMany
-	private List<Bus> buses;
-	
-	
+
+	/*
+	 * @OneToMany private List<Bus> buses;
+	 */
+
 	private LocalDateTime departureTime;
 	private LocalDateTime arrivalTime;
 	private LocalDate doj;
@@ -26,28 +25,6 @@ public class Route {
 
 	public Route() {
 
-	}
-
-	public Route(String routeId, String routeFrom, String routeTo, LocalDate doj, String pickupPoint, double fare) {
-    this.routeId=routeId;
-    this.routeFrom=routeFrom;
-    this.routeTo=routeTo;
-    this.doj=doj;
-    this.pickupPoint=pickupPoint;
-    this.fare=fare;
-	}
-
-	public Route(String routeId, String routeFrom, String routeTo, List<Bus> buses, LocalDateTime departureTime,
-			LocalDateTime arrivalTime, LocalDate doj, String pickupPoint, double fare) {
-		this.routeId = routeId;
-		this.routeFrom = routeFrom;
-		this.routeTo = routeTo;
-		this.buses = buses;
-		this.departureTime = departureTime;
-		this.arrivalTime = arrivalTime;
-		this.doj = doj;
-		this.pickupPoint = pickupPoint;
-		this.fare = fare;
 	}
 
 	public String getRouteId() {
@@ -74,14 +51,12 @@ public class Route {
 		this.routeTo = routeTo;
 	}
 
-	public List<Bus> getBuses() {
-		return buses;
-	}
-
-	public void setBuses(List<Bus> buses) {
-		this.buses = buses;
-	}
-
+	/*
+	 * public List<Bus> getBuses() { return buses; }
+	 * 
+	 * public void setBuses(List<Bus> buses) { this.buses = buses; }
+	 */
+	
 	public LocalDateTime getDepartureTime() {
 		return departureTime;
 	}
@@ -124,9 +99,31 @@ public class Route {
 
 	@Override
 	public String toString() {
-		return "Route [routeId=" + routeId + ", routeFrom=" + routeFrom + ", routeTo=" + routeTo + ", buses=" + buses
-				+ ", departureTime=" + departureTime + ", arrivalTime=" + arrivalTime + ", doj=" + doj
-				+ ", pickupPoint=" + pickupPoint + ", fare=" + fare + "]";
+		return "Route [routeId=" + routeId + ", routeFrom=" + routeFrom + ", routeTo=" + routeTo + ", departureTime="
+				+ departureTime + ", arrivalTime=" + arrivalTime + ", doj=" + doj + ", pickupPoint=" + pickupPoint
+				+ ", fare=" + fare + "]";
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Route other = (Route) obj;
+		if (routeId == null) {
+			if (other.routeId != null)
+				return false;
+		} else if (!routeId.equals(other.routeId))
+			return false;
+		return true;
+	}
+	@Override
+	public int hashCode() {
+
+		return Objects.hash(routeId);
 	}
 
 }
