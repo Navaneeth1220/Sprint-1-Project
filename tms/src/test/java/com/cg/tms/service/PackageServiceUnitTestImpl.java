@@ -270,29 +270,26 @@ public class PackageServiceUnitTestImpl {
 	@Test
 	public void testDeletePackageById_1() {
 
-		int packageId = 3;
 		Package pack = mock(Package.class);
 		Optional<Package> optional = Optional.of(pack);
-		when(packageRepository.findById(packageId)).thenReturn(optional);
-		Package result = packageService.deletePackage(packageId);
-		Assertions.assertEquals(pack, result);
-		verify(packageRepository).findById(packageId);
+		when(packageRepository.existsById(pack.getPackageId())).thenReturn(true);
+		doNothing().when(packageRepository).deleteById(pack.getPackageId());
+		verify(packageRepository).findById(pack.getPackageId());
 
 	}
-	
+
 	/**
 	 * Scenario 7b: Package not foundById to Delete:Failure
 	 */
 	@Test
 	public void testDeletePackageById_2() {
 
-		int packageId = 50;
+		Package pack = mock(Package.class);
 		Optional<Package> optional = Optional.empty();
-		when(packageRepository.findById(packageId)).thenReturn(optional);
-		Executable executable = () -> packageService.deletePackage(packageId);
+		when(packageRepository.findById(pack.getPackageId())).thenReturn(optional);
+		Executable executable = () -> packageService.deletePackage(pack.getPackageId());
 		Assertions.assertThrows(PackageNotFoundException.class, executable);
 	}
-
 
 	/**
 	 * Scenario 8a: View All Packages:Success
@@ -307,7 +304,5 @@ public class PackageServiceUnitTestImpl {
 		verify(packageRepository).findAll();
 
 	}
-	
-	
 
 }
