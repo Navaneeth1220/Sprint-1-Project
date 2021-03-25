@@ -270,13 +270,14 @@ public class PackageServiceUnitTestImpl {
 	@Test
 	public void testDeletePackageById_1() {
 
+		int packageId = 3;
 		Package pack = mock(Package.class);
 		Optional<Package> optional = Optional.of(pack);
-		when(packageRepository.findById(pack.getPackageId())).thenReturn(optional);
-		doNothing().when(packageRepository).deleteById(pack.getPackageId());
-		Package result = packageService.deletePackage(pack.getPackageId());
+		Mockito.when(packageRepository.findById(packageId)).thenReturn(optional);
+		doNothing().when(packageService).validatePackageId(packageId);
+		Package result = packageService.deletePackage(packageId);
+		Assertions.assertNotNull(optional);
 		Assertions.assertEquals(pack, result);
-		verify(packageRepository).deleteById(pack.getPackageId());
 	}
 
 	/**
@@ -285,10 +286,10 @@ public class PackageServiceUnitTestImpl {
 	@Test
 	public void testDeletePackageById_2() {
 
-		Package pack = mock(Package.class);
+		int packageId = 3;
 		Optional<Package> optional = Optional.empty();
-		when(packageRepository.findById(pack.getPackageId())).thenReturn(optional);
-		Executable executable = () -> packageService.deletePackage(pack.getPackageId());
+		when(packageRepository.findById(packageId)).thenReturn(optional);
+		Executable executable = () -> packageService.deletePackage(packageId);
 		Assertions.assertThrows(PackageNotFoundException.class, executable);
 	}
 
