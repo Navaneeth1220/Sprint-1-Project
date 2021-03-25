@@ -4,7 +4,6 @@ import java.time.LocalDate;
 
 public class Feedback {
 	
-	
 	private String feedbackId;
 	private Customer customer;
 	private String feedback;

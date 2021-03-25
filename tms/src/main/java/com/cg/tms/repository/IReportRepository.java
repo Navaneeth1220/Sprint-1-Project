@@ -1,15 +1,16 @@
 package com.cg.tms.repository;
 
-import com.cg.tms.entities.Report;
-import com.cg.tms.exceptions.ReportNotFoundException;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface IReportRepository {
+import com.cg.tms.entities.Report;
+
+public interface IReportRepository extends JpaRepository<Report,Integer> {
 	
-	
+	/*
 		public Report  addReport(Report report);
 		public Report  deleteReport(int reportId) throws ReportNotFoundException;
 		public Report  viewReport(int reportId) throws ReportNotFoundException;
-		public Report  viewAllReports();
+		public Report  viewAllReports(); */
 		
 	
 	

@@ -24,20 +24,25 @@ public class BookingServiceImpl implements IBookingService {
 		validateId(booking.getUserId());
 		validateBookingType(booking.getBookingType());
 		validateBookingTitle(booking.getBookingTitle());
-		repo.save(booking);
-
-		return booking;
+		return repo.save(booking);
 	}
 
 	@Override
 	public Booking cancelBooking(int bookingId) throws BookingNotFoundException {
-		return null;
+		validateId(bookingId);
+		Optional<Booking> optional = repo.findById(bookingId);
+		if (!optional.isPresent()) {
+			throw new BookingNotFoundException("Booking not found");
+		}
+		Booking fetched=optional.get();
+		repo.delete(fetched);
+		return fetched;
 	}
 
 	@Override
 	public Booking viewBooking(int bookingId) throws BookingNotFoundException {
 		Optional<Booking> optional = repo.findById(bookingId);
-		if(!optional.isPresent()) {
+		if (!optional.isPresent()) {
 			throw new BookingNotFoundException("Booking not found");
 		}
 		return optional.get();
@@ -45,7 +50,8 @@ public class BookingServiceImpl implements IBookingService {
 
 	@Override
 	public List<Booking> viewAllBookings() {
-		return null;
+		List<Booking> bookings = repo.findAll();
+		return bookings;
 	}
 
 	void validateId(int id) {
@@ -59,7 +65,7 @@ public class BookingServiceImpl implements IBookingService {
 			throw new InvalidBookingException("Check Booking type");
 		}
 	}
-	
+
 	void validateBookingTitle(String title) {
 		if (title == null || title.isEmpty() || title.trim().isEmpty()) {
 			throw new InvalidBookingException("Check Booking title");
