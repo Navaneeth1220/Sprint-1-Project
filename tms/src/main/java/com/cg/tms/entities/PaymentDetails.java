@@ -2,6 +2,7 @@ package com.cg.tms.entities;
 
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -9,12 +10,16 @@ import javax.persistence.Id;
 public class PaymentDetails {
 
 	@Id
+	@Column(unique = true)
 	private int paymentId;
 	private String paymentMode;
 	private String bankName;
+	@Column(unique = true)
 	private long cardNo;
+	@Column(unique = true)
 	private double netAmount;
 	private String paymentStatus;
+	@Column(unique = true)
 	private int userId;
 
 	public PaymentDetails() {
@@ -93,7 +98,7 @@ public class PaymentDetails {
 
 	@Override
 	public String toString() {
-		
+
 		return "PaymentDetails [paymentId=" + paymentId + ", paymentMode=" + paymentMode + ", bankName=" + bankName
 				+ ", cardNo=" + cardNo + ", netAmount=" + netAmount + ", paymentStatus=" + paymentStatus + ", userId="
 				+ userId + "]";
@@ -101,7 +106,7 @@ public class PaymentDetails {
 
 	@Override
 	public boolean equals(Object obj) {
-		
+
 		if (this == obj)
 			return true;
 		if (obj == null)

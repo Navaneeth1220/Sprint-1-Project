@@ -3,11 +3,11 @@ package com.cg.tms.entities;
 import java.util.Objects;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
 public class Hotel {
-
 
 	@Id
 	private int hotelId;

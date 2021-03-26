@@ -2,6 +2,7 @@ package com.cg.tms.entities;
 
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
@@ -10,6 +11,7 @@ import javax.persistence.OneToOne;
 public class TicketDetails {
 
 	@Id
+	@Column(unique=true)
 	private String ticketId;
 
 	@OneToOne
