@@ -19,8 +19,8 @@ public class Booking {
 	private String bookingTitle;
 	private LocalDate bookingDate;
 	
-	@OneToOne
-	private Package pack;
+	//@OneToOne
+	//private Package pack;
 	
 	private int userId;
 	
@@ -64,12 +64,13 @@ public class Booking {
 	public void setBookingDate(LocalDate bookingDate) {
 		this.bookingDate = bookingDate;
 	}
-	public Package getPack() {
-		return pack;
-	}
-	public void setPack(Package pack) {
-		this.pack = pack;
-	}
+	//public Package getPack() {
+	//	return pack;
+	//}
+	//public void setPack(Package pack) {
+		//this.pack = pack;
+	//}
+	
 	public int getUserId() {
 		return userId;
 	}

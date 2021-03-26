@@ -16,14 +16,12 @@ import com.cg.tms.repository.IBookingRepository;
 public class BookingServiceImpl implements IBookingService {
 
 	@Autowired
-	IBookingRepository repo;
+	private IBookingRepository repo;
 
 	@Override
 	public Booking makeBooking(Booking booking) {
 
-		validateId(booking.getUserId());
-		validateBookingType(booking.getBookingType());
-		validateBookingTitle(booking.getBookingTitle());
+		validateBooking(booking);
 		return repo.save(booking);
 	}
 
@@ -52,6 +50,13 @@ public class BookingServiceImpl implements IBookingService {
 	public List<Booking> viewAllBookings() {
 		List<Booking> bookings = repo.findAll();
 		return bookings;
+	}
+	
+	
+	void validateBooking(Booking booking) {
+		validateId(booking.getBookingId());
+		validateBookingType(booking.getBookingTitle());
+		validateBookingTitle(booking.getBookingTitle());
 	}
 
 	void validateId(int id) {

@@ -1,10 +1,7 @@
 package com.cg.tms.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.cg.tms.entities.Report;
-
-public interface IReportRepository extends JpaRepository<Report,Integer> {
+public interface IReportRepository {
 	
 	/*
 		public Report  addReport(Report report);
