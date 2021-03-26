@@ -60,7 +60,7 @@ public class PackageRestController {
 	}
 
 	@DeleteMapping("/deletePackage")
-	public String delete(@RequestBody DeletePackageRequest requestData) {
+	public String deletePackage(@RequestBody DeletePackageRequest requestData) {
 
 		packageService.deletePackage(requestData.getPackageId());
 		return "package deleted for packageId=" + requestData.getPackageId();
