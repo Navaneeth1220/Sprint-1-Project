@@ -1,18 +1,19 @@
-/*package com.cg.tms.entities;
+package com.cg.tms.entities;
 
 import java.util.Objects;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class TicketDetails {
 
-	@GeneratedValue
 	@Id
 	private String ticketId;
-	// private Route route;
+
+	@OneToOne
+	private Route route;
 	private String status;
 
 	public TicketDetails() {
@@ -29,15 +30,15 @@ public class TicketDetails {
 		this.ticketId = ticketId;
 	}
 
-	/*
-	 * public Route getRoute() {
-	 * 
-	 * return route; }
-	 * 
-	 * public void setRoute(Route route) {
-	 * 
-	 * this.route = route; }
-	 
+	public Route getRoute() {
+
+		return route;
+	}
+
+	public void setRoute(Route route) {
+
+		this.route = route;
+	}
 
 	public String getStatus() {
 
@@ -79,4 +80,4 @@ public class TicketDetails {
 		return Objects.hash(ticketId);
 	}
 
-}*/
+}

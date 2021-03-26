@@ -1,15 +1,13 @@
-/*package com.cg.tms.entities;
+package com.cg.tms.entities;
 
 import java.util.Objects;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
 public class PaymentDetails {
 
-	@GeneratedValue
 	@Id
 	private int paymentId;
 	private String paymentMode;
@@ -122,4 +120,4 @@ public class PaymentDetails {
 		return Objects.hash(paymentId);
 	}
 
-}*/
+}

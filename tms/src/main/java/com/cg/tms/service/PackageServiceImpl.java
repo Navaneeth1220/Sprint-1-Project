@@ -20,13 +20,9 @@ public class PackageServiceImpl implements IPackageService {
 	@Override
 	public Package addPackage(Package pack) {
 
-		validatePackageName(pack.getPackageName());
-		validatePackageDescription(pack.getPackageDescription());
-		validatePackageType(pack.getPackageType());
-
-		Package saved =  packageRepository.save(pack);
+		validatePackage(pack);
+		Package saved = packageRepository.save(pack);
 		return saved;
-
 	}
 
 	@Transactional
@@ -34,15 +30,9 @@ public class PackageServiceImpl implements IPackageService {
 	public Package deletePackage(int packageId) throws PackageNotFoundException {
 
 		validatePackageId(packageId);
-		Optional<Package> optional = packageRepository.findById(packageId);
-		if (!optional.isPresent()) {
-
-			throw new PackageNotFoundException("package not found for packageId=" + packageId);
-		}
-
+		Package pack = searchPackage(packageId);
 		packageRepository.deleteById(packageId);
-
-		return optional.get();
+		return pack;
 	}
 
 	@Override
@@ -62,7 +52,7 @@ public class PackageServiceImpl implements IPackageService {
 	public List<Package> viewAllPackages() {
 
 		List<Package> viewAllPackages = packageRepository.findAll();
-       
+
 		return viewAllPackages;
 
 	}
@@ -98,6 +88,14 @@ public class PackageServiceImpl implements IPackageService {
 
 			throw new InvalidPackageTypeException("packageType can't be null or empty");
 		}
+	}
+
+	public void validatePackage(Package pack) {
+
+		validatePackageName(pack.getPackageName());
+		validatePackageDescription(pack.getPackageDescription());
+		validatePackageType(pack.getPackageType());
+
 	}
 
 }

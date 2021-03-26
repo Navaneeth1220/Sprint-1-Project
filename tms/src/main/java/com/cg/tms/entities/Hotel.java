@@ -1,15 +1,14 @@
-/*package com.cg.tms.entities;
+package com.cg.tms.entities;
 
 import java.util.Objects;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
 public class Hotel {
 
-	@GeneratedValue
+
 	@Id
 	private int hotelId;
 	private String hotelName;
@@ -121,5 +120,5 @@ public class Hotel {
 		return Objects.hash(hotelId);
 	}
 
-}*/
+}
 

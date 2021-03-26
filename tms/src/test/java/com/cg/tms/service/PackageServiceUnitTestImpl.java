@@ -33,23 +33,14 @@ public class PackageServiceUnitTestImpl {
 	@Test
 	public void testAdd_Package1() {
 
-		String packageName = "Local", packageDescription = "diverse and cultural", packageType = "Normal";
 		Package pack = mock(Package.class);
 		Package saved = mock(Package.class);
-		when(pack.getPackageName()).thenReturn(packageName);
-		when(pack.getPackageDescription()).thenReturn(packageDescription);
-		when(pack.getPackageType()).thenReturn(packageType);
 		when(packageRepository.save(pack)).thenReturn(saved);
-		doNothing().when(packageService).validatePackageName(packageName);
-		doNothing().when(packageService).validatePackageDescription(packageDescription);
-		doNothing().when(packageService).validatePackageType(packageType);
+		doNothing().when(packageService).validatePackage(pack);
 		Package result = packageService.addPackage(pack);
 		Assertions.assertSame(saved, result);
+		verify(packageService).validatePackage(pack);
 		verify(packageRepository).save(pack);
-		verify(packageService).validatePackageName(packageName);
-		verify(packageService).validatePackageDescription(packageDescription);
-		verify(packageService).validatePackageType(packageType);
-
 	}
 
 	/**
@@ -272,12 +263,11 @@ public class PackageServiceUnitTestImpl {
 
 		int packageId = 3;
 		Package pack = mock(Package.class);
-		Optional<Package> optional = Optional.of(pack);
-		Mockito.when(packageRepository.findById(packageId)).thenReturn(optional);
-		doNothing().when(packageService).validatePackageId(packageId);
+		doReturn(pack).when(packageService).searchPackage(packageId);
 		Package result = packageService.deletePackage(packageId);
-		Assertions.assertNotNull(optional);
 		Assertions.assertEquals(pack, result);
+		verify(packageRepository).deleteById(packageId);
+
 	}
 
 	/**

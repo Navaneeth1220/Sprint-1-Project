@@ -17,14 +17,14 @@ public class Package {
 	private String packageType;
 	private double packageCost;
 
-	/*@OneToOne
-	private PaymentDetails payment;*/
+	@OneToOne
+	private PaymentDetails payment;
 
-	/*@OneToOne
-	private TicketDetails ticket;*/
+	@OneToOne
+	private TicketDetails ticket;
 
-	/*@OneToOne
-	private Hotel hotel;*/
+	@OneToOne
+	private Hotel hotel;
 
 	public Package() {
 
@@ -80,7 +80,7 @@ public class Package {
 		this.packageCost = packageCost;
 	}
 
-/*	public PaymentDetails getPayment() {
+	public PaymentDetails getPayment() {
 
 		return payment;
 	}
@@ -88,9 +88,9 @@ public class Package {
 	public void setPayment(PaymentDetails payment) {
 
 		this.payment = payment;
-	}*/
+	}
 
-	/*public TicketDetails getTicket() {
+	public TicketDetails getTicket() {
 
 		return ticket;
 	}
@@ -98,9 +98,9 @@ public class Package {
 	public void setTicket(TicketDetails ticket) {
 
 		this.ticket = ticket;
-	}*/
+	}
 
-	/*public Hotel getHotel() {
+	public Hotel getHotel() {
 
 		return hotel;
 	}
@@ -108,7 +108,7 @@ public class Package {
 	public void setHotel(Hotel hotel) {
 
 		this.hotel = hotel;
-	}*/
+	}
 
 	@Override
 	public String toString() {
