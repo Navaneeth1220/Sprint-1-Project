@@ -2,20 +2,23 @@ package com.cg.tms.entities;
 
 import java.time.LocalDate;
 
-
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
+@Entity
 public class Route {
-	
+	@Id
 	private String routeId;
 	private String routeFrom;
 	private String routeTo;
 
-	/*
-	 * @OneToMany private List<Bus> buses;
-	 */
+	@OneToMany
+	private List<Bus> buses;
 
 	private LocalDateTime departureTime;
 	private LocalDateTime arrivalTime;
@@ -51,12 +54,14 @@ public class Route {
 		this.routeTo = routeTo;
 	}
 
-	/*
-	 * public List<Bus> getBuses() { return buses; }
-	 * 
-	 * public void setBuses(List<Bus> buses) { this.buses = buses; }
-	 */
-	
+	public List<Bus> getBuses() {
+		return buses;
+	}
+
+	public void setBuses(List<Bus> buses) {
+		this.buses = buses;
+	}
+
 	public LocalDateTime getDepartureTime() {
 		return departureTime;
 	}
@@ -120,6 +125,7 @@ public class Route {
 			return false;
 		return true;
 	}
+
 	@Override
 	public int hashCode() {
 

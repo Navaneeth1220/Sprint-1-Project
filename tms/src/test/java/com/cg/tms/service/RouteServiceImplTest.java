@@ -1,15 +1,8 @@
 package com.cg.tms.service;
 
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.doThrow;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-
+import static org.mockito.Mockito.*;
 import java.util.List;
 import java.util.Optional;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -18,11 +11,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
-
 import com.cg.tms.entities.Route;
-import com.cg.tms.exceptions.InvalidRouteFromException;
-import com.cg.tms.exceptions.InvalidRouteIdException;
-import com.cg.tms.exceptions.InvalidRouteToException;
+import com.cg.tms.exceptions.InvalidRouteException;
 import com.cg.tms.exceptions.RouteNotFoundException;
 import com.cg.tms.repository.IRouteRepository;
 
@@ -47,23 +37,17 @@ public class RouteServiceImplTest {
 		String routeTo = "Delhi";
 		double fare = 600;
 		Route route = mock(Route.class);
-		Route saved = mock(Route.class);
-		when(route.getRouteId()).thenReturn(routeId);
-		when(route.getRouteFrom()).thenReturn(routeFrom);
-		when(route.getRouteTo()).thenReturn(routeTo);
-		when(route.getFare()).thenReturn(fare);
-		when(repository.save(route)).thenReturn(saved);
-		doNothing().when(service).validateRouteId(routeId);
-		doNothing().when(service).validateRouteFrom(routeFrom);
-		doNothing().when(service).validateRouteTo(routeTo);
-		doNothing().when(service).validateFare(fare);
+		route.setRouteId(routeId);
+		route.setRouteFrom(routeFrom);
+		route.setRouteTo(routeTo);
+		route.setFare(fare);
+		when(repository.save(route)).thenReturn(route);
+		doNothing().when(service).validateRoute(route);
 		Route result = service.addRoute(route);
-		Assertions.assertSame(saved, result);
+		Assertions.assertSame(result,route);
 		verify(repository).save(route);
-		verify(service).validateRouteId(routeId);
-		verify(service).validateRouteFrom(routeFrom);
-		verify(service).validateRouteTo(routeTo);
-		verify(service).validateFare(fare);
+		verify(service).validateRoute(route);
+		
 	}
 
 	/*
@@ -76,9 +60,9 @@ public class RouteServiceImplTest {
 		String routeId = "";
 		Route route = mock(Route.class);
 		when(route.getRouteId()).thenReturn(routeId);
-		doThrow(InvalidRouteIdException.class).when(service).validateRouteId(routeId);
+		doThrow(InvalidRouteException.class).when(service).validateRouteId(routeId);
 		Executable executable = () -> service.addRoute(route);
-		Assertions.assertThrows(InvalidRouteIdException.class, executable);
+		Assertions.assertThrows(InvalidRouteException.class, executable);
 		verify(repository, never()).save(route);
 	}
 
@@ -152,7 +136,7 @@ public class RouteServiceImplTest {
 
 		String routeId = "";
 		Executable executable = () -> service.validateRouteId(routeId);
-		Assertions.assertThrows(InvalidRouteIdException.class, executable);
+		Assertions.assertThrows(InvalidRouteException.class, executable);
 
 	}
 
@@ -165,7 +149,7 @@ public class RouteServiceImplTest {
 
 		String routeId = null;
 		Executable executable = () -> service.validateRouteId(routeId);
-		Assertions.assertThrows(InvalidRouteIdException.class, executable);
+		Assertions.assertThrows(InvalidRouteException.class, executable);
 
 	}
 	/*
@@ -189,7 +173,7 @@ public class RouteServiceImplTest {
 
 		String routeFrom = "";
 		Executable executable = () -> service.validateRouteFrom(routeFrom);
-		Assertions.assertThrows(InvalidRouteFromException.class, executable);
+		Assertions.assertThrows(InvalidRouteException.class, executable);
 
 	}
 
@@ -202,7 +186,7 @@ public class RouteServiceImplTest {
 
 		String routeFrom = null;
 		Executable executable = () -> service.validateRouteFrom(routeFrom);
-		Assertions.assertThrows(InvalidRouteFromException.class, executable);
+		Assertions.assertThrows(InvalidRouteException.class, executable);
 
 	}
 
@@ -227,7 +211,7 @@ public class RouteServiceImplTest {
 
 		String routeTo = "";
 		Executable executable = () -> service.validateRouteTo(routeTo);
-		Assertions.assertThrows(InvalidRouteToException.class, executable);
+		Assertions.assertThrows(InvalidRouteException.class, executable);
 
 	}
 
@@ -240,7 +224,7 @@ public class RouteServiceImplTest {
 
 		String routeTo = null;
 		Executable executable = () -> service.validateRouteTo(routeTo);
-		Assertions.assertThrows(InvalidRouteToException.class, executable);
+		Assertions.assertThrows(InvalidRouteException.class, executable);
 
 	}
 
