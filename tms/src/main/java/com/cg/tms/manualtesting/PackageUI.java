@@ -22,7 +22,6 @@ public class PackageUI {
 			System.out.println();
 			System.out.println("Adding a new Package: ");
 			Package pack1 = new Package();
-			// pack1.setPackageId(1);
 			pack1.setPackageName("Local");
 			pack1.setPackageDescription("diverse and cultural");
 			pack1.setPackageType("Normal");
@@ -59,7 +58,6 @@ public class PackageUI {
 			displayPaymentDetails(payment1);
 
 			Package pack2 = new Package();
-			// pack2.setPackageId(2);
 			pack2.setPackageName("National");
 			pack2.setPackageDescription("challenging adventure");
 			pack2.setPackageType("Ultra");
@@ -96,7 +94,6 @@ public class PackageUI {
 			displayPaymentDetails(payment2);
 
 			Package pack3 = new Package();
-			// pack3.setPackageId(3);
 			pack3.setPackageName("Holiday");
 			pack3.setPackageDescription("peace and relaxation");
 			pack3.setPackageType("Deluxe");
@@ -241,8 +238,7 @@ public class PackageUI {
 
 			displayPaymentDetails(payment);
 		}
-		
-		
+
 	}
 
 }
