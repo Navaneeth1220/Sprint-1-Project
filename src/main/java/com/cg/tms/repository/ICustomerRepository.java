@@ -2,24 +2,19 @@ package com.cg.tms.repository;
 
 import java.util.List;
 
+import com.cg.tms.entities.Route;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.cg.tms.entities.Customer;
 import com.cg.tms.exceptions.CustomerNotFoundException;
 import com.cg.tms.exceptions.PackageNotFoundException;
 import com.cg.tms.exceptions.RouteNotFoundException;
+import com.cg.tms.entities.Package;
 
-public interface ICustomerRepository extends JpaRepository<Customer,Integer> {
+public interface ICustomerRepository extends JpaRepository<Customer, Integer> {
+    List<Customer> findByRoute(Route route);
 
-	/*public Customer addCustomer(Customer customer);
-	public Customer updateCustomer(Customer customer) throws CustomerNotFoundException;
-	public Customer deleteCustomer(Customer customer) throws CustomerNotFoundException;
-	public Customer viewCustomer(int custid) throws CustomerNotFoundException;
-	public List<Customer> viewAllCustomers(int packageId)throws PackageNotFoundException;
-	public List<Customer> viewCustomerList(int routeId)throws RouteNotFoundException;
-	public Object findById(int customerid);*/
+    List<Customer> findByPack(Package pack);
 
-	
-	
-	
+
 }

@@ -14,7 +14,6 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
-import com.cg.tms.service.*;
 import com.cg.tms.entities.Customer;
 import com.cg.tms.exceptions.CustomerNotFoundException;
 import com.cg.tms.repository.ICustomerRepository;
@@ -25,7 +24,7 @@ class CustomerServiceImplementationTest {
 ICustomerRepository repo;
  @Spy
  @InjectMocks
- CustomerServiceImplementation service;
+ CustomerServiceImpl service;
  
  //Success Test case
  
