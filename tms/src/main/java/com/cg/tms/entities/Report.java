@@ -1,4 +1,3 @@
-
 package com.cg.tms.entities;
 
 public class Report {
@@ -6,6 +5,6 @@ public class Report {
 	private int reportId;
 	private String reportName;
 	private String reportType;
-		
+
 
 }

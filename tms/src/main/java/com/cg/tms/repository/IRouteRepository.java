@@ -1,18 +1,22 @@
 package com.cg.tms.repository;
 
-import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.cg.tms.entities.Route;
-import com.cg.tms.exceptions.RouteNotFoundException;
 
-public interface IRouteRepository {
+public interface IRouteRepository extends JpaRepository<Route,String> {
 	
+/*	Route save(Route route);
+	Optional<Route> findById(String routeId);
+	void deleteById (String routeId);
+	List<Route> findAll();
+	*/
 	
-	public  Route  addRoute(Route route);
+	/*public  Route  addRoute(Route route);
 	public  Route  updateRoute(Route route) throws RouteNotFoundException;
 	public  Route   removeRoute(int routeId) throws RouteNotFoundException;
 	public  Route    searchRoute(int routeId) throws RouteNotFoundException;
-	public  List<Route> viewRouteList();
+	public  List<Route> viewRouteList();*/
 	
 	
 	

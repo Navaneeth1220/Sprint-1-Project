@@ -1,6 +1,7 @@
 package com.cg.tms.service;
 
 import java.util.List;
+<<<<<<< HEAD
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +24,23 @@ public class BookingServiceImpl implements IBookingService {
 
 		validateBooking(booking);
 		return repo.save(booking);
+=======
+
+import com.cg.tms.entities.Booking;
+import com.cg.tms.exceptions.BookingNotFoundException;
+
+
+public class BookingServiceImpl implements IBookingService {
+
+	@Override	
+	public Booking makeBooking(Booking booking) {
+		return null;
+>>>>>>> Maddy
 	}
 
 	@Override
 	public Booking cancelBooking(int bookingId) throws BookingNotFoundException {
+<<<<<<< HEAD
 		validateId(bookingId);
 		Optional<Booking> optional = repo.findById(bookingId);
 		if (!optional.isPresent()) {
@@ -35,19 +49,27 @@ public class BookingServiceImpl implements IBookingService {
 		Booking fetched=optional.get();
 		repo.delete(fetched);
 		return fetched;
+=======
+		return null;
+>>>>>>> Maddy
 	}
 
 	@Override
 	public Booking viewBooking(int bookingId) throws BookingNotFoundException {
+<<<<<<< HEAD
 		Optional<Booking> optional = repo.findById(bookingId);
 		if (!optional.isPresent()) {
 			throw new BookingNotFoundException("Booking not found");
 		}
 		return optional.get();
+=======
+		return null;
+>>>>>>> Maddy
 	}
 
 	@Override
 	public List<Booking> viewAllBookings() {
+<<<<<<< HEAD
 		List<Booking> bookings = repo.findAll();
 		return bookings;
 	}
@@ -75,6 +97,9 @@ public class BookingServiceImpl implements IBookingService {
 		if (title == null || title.isEmpty() || title.trim().isEmpty()) {
 			throw new InvalidBookingException("Check Booking title");
 		}
+=======
+		return null;
+>>>>>>> Maddy
 	}
 
 }
