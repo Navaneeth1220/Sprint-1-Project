@@ -3,6 +3,8 @@ package com.cg.tms.service;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,7 @@ public class RouteServiceImpl implements IRouteService {
 	@Autowired
 	private IRouteRepository repository;
 
+	@Transactional
 	@Override
 	public Route addRoute(Route route) {
 		validateRoute(route);
@@ -25,23 +28,25 @@ public class RouteServiceImpl implements IRouteService {
 		return saved;
 	}
 
+	@Transactional
 	@Override
 	public Route updateRoute(Route route) throws RouteNotFoundException {
 		validateRouteId(route.getRouteId());
 		Optional<Route> optional = repository.findById(route.getRouteId());
 		if (!optional.isPresent()) {
 
-		throw new RouteNotFoundException("Route not found for RouteId=" +route.getRouteId());
-		
+			throw new RouteNotFoundException("Route not found for RouteId=" + route.getRouteId());
+
 		}
 		Route fetched = optional.get();
 		fetched.setRouteFrom(route.getRouteFrom());
 		fetched.setRouteTo(route.getRouteTo());
 		fetched.setFare(route.getFare());
-		fetched=repository.save(route);
+		fetched = repository.save(route);
 		return fetched;
 	}
 
+	@Transactional
 	@Override
 	public Route removeRoute(String routeId) throws RouteNotFoundException {
 
@@ -57,6 +62,7 @@ public class RouteServiceImpl implements IRouteService {
 		return optional.get();
 	}
 
+	@Transactional
 	@Override
 	public Route searchRoute(String routeId) throws RouteNotFoundException {
 		validateRouteId(routeId);
@@ -68,6 +74,7 @@ public class RouteServiceImpl implements IRouteService {
 		return optional.get();
 	}
 
+	@Transactional
 	@Override
 	public List<Route> viewRouteList() {
 		List<Route> routeList = repository.findAll();
