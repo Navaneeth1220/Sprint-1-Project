@@ -1,19 +1,14 @@
 package com.cg.tms.repository;
 
 import java.util.List;
+import java.util.Optional;
+import org.springframework.data.jpa.repository.JpaRepository;
 
+import com.cg.tms.entities.Booking;
 import com.cg.tms.entities.Travels;
-import com.cg.tms.exceptions.TravelsNotFoundException;
 
-public interface ITravelsRespository {
+public interface ITravelsRespository extends JpaRepository<Travels,Integer> {
 	
-		
-			public Travels  addTravels(Travels travels);
-			public Travels  updateTravels(Travels travels) throws TravelsNotFoundException;
-			public Travels  removeTravels(int travelsId) throws TravelsNotFoundException;
-			public Travels searchTravels(int travelsId) throws TravelsNotFoundException;
-			public  List<Travels>  viewTravels();
-	
-	
+
 
 }

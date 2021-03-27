@@ -13,6 +13,7 @@ public interface ITravelsService {
 			public Travels  removeTravels(int travelsId) throws TravelsNotFoundException;
 			public Travels searchTravels(int travelsId) throws TravelsNotFoundException;
 			public  List<Travels>  viewTravels();
+			
 	
 	
 
