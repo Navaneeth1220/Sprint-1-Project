@@ -1,7 +1,6 @@
 package com.cg.tms.manualtesting;
 
 import java.util.*;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import com.cg.tms.service.*;
@@ -19,6 +18,11 @@ public class PackageUI {
 
 		try {
 
+			/*
+			 * Creating Package: pack1 object
+			 * 
+			 * */
+
 			System.out.println();
 			System.out.println("Adding a new Package: ");
 			Package pack1 = new Package();
@@ -27,6 +31,10 @@ public class PackageUI {
 			pack1.setPackageType("Normal");
 			pack1.setPackageCost(8500.0);
 
+			/*
+			 * Creating Hotel: hotel1 object
+			 * 
+			 * */
 			Hotel hotel1 = new Hotel();
 			hotel1.setHotelId(177);
 			hotel1.setHotelName("Guhantara");
@@ -37,11 +45,19 @@ public class PackageUI {
 			hotel1.setRent(4720.0);
 			hotel1.setStatus("Good");
 
+			/*
+			 * Creating TicketDetails: ticket1 object
+			 * 
+			 * */
 			TicketDetails ticket1 = new TicketDetails();
 			ticket1.setTicketId("401254");
 			ticket1.setRoute(null);
 			ticket1.setStatus("Processing");
 
+			/*
+			 * Creating PaymentDetails: payment1 object
+			 * 
+			 * */
 			PaymentDetails payment1 = new PaymentDetails();
 			payment1.setPaymentId(4012);
 			payment1.setPaymentMode("Debit");
@@ -51,18 +67,31 @@ public class PackageUI {
 			payment1.setPaymentStatus("Tranaction Complete");
 			payment1.setUserId(21);
 
+			/*
+			 * Adding a package: addPackage1 to the repository
+			 * 
+			 * */
+			
 			Package addPackage1 = packageService.addPackage(pack1);
 			displayPackage(addPackage1);
 			displayHotel(hotel1);
 			displayTicketDetails(ticket1);
 			displayPaymentDetails(payment1);
 
+			/*
+			 * Creating Package: pack2 object
+			 * 
+			 * */
 			Package pack2 = new Package();
 			pack2.setPackageName("National");
 			pack2.setPackageDescription("challenging adventure");
 			pack2.setPackageType("Ultra");
 			pack2.setPackageCost(10500.0);
 
+			/*
+			 * Creating Hotel: hotel2 object
+			 * 
+			 * */
 			Hotel hotel2 = new Hotel();
 			hotel2.setHotelId(277);
 			hotel2.setHotelName("Leela Palace");
@@ -73,11 +102,20 @@ public class PackageUI {
 			hotel2.setRent(5720.0);
 			hotel2.setStatus("Very good");
 
+
+			/*
+			 * Creating TicketDetails: ticket2 object
+			 * 
+			 * */
 			TicketDetails ticket2 = new TicketDetails();
 			ticket2.setTicketId("401255");
 			ticket2.setRoute(null);
 			ticket2.setStatus("Processing");
 
+			/*
+			 * Creating PaymentDetails: payment2 object
+			 * 
+			 * */
 			PaymentDetails payment2 = new PaymentDetails();
 			payment2.setPaymentId(4013);
 			payment2.setPaymentMode("Credit");
@@ -87,18 +125,31 @@ public class PackageUI {
 			payment2.setPaymentStatus("Tranaction Processing");
 			payment2.setUserId(22);
 
+			/*
+			 * Adding a package: addPackage2 to the repository
+			 * 
+			 * */
+			
 			Package addPackage2 = packageService.addPackage(pack2);
 			displayPackage(addPackage2);
 			displayHotel(hotel2);
 			displayTicketDetails(ticket2);
 			displayPaymentDetails(payment2);
 
+			/*
+			 * Creating Package: pack3 object
+			 * 
+			 * */
 			Package pack3 = new Package();
 			pack3.setPackageName("Holiday");
 			pack3.setPackageDescription("peace and relaxation");
 			pack3.setPackageType("Deluxe");
 			pack3.setPackageCost(12500.0);
 
+			/*
+			 * Creating Hotel: hotel3 object
+			 * 
+			 * */
 			Hotel hotel3 = new Hotel();
 			hotel3.setHotelId(377);
 			hotel3.setHotelName("Taj Holiday");
@@ -108,11 +159,20 @@ public class PackageUI {
 			hotel3.setRent(6720.0);
 			hotel3.setStatus("Excellent");
 
+
+			/*
+			 * Creating TicketDetails: ticket3 object
+			 * 
+			 * */
 			TicketDetails ticket3 = new TicketDetails();
 			ticket3.setTicketId("401256");
 			ticket3.setRoute(null);
 			ticket3.setStatus("Processing");
 
+			/*
+			 * Creating PaymentDetails: payment3 object
+			 * 
+			 * */
 			PaymentDetails payment3 = new PaymentDetails();
 			payment3.setPaymentId(4012);
 			payment3.setPaymentMode("NetBanking");
@@ -122,22 +182,39 @@ public class PackageUI {
 			payment3.setPaymentStatus("Tranaction Failed");
 			payment3.setUserId(27);
 
+			/*
+			 * Adding a package: addPackage3 to the repository
+			 * 
+			 * */
+			
 			Package addPackage3 = packageService.addPackage(pack3);
 			displayPackage(addPackage3);
 			displayHotel(hotel3);
 			displayTicketDetails(ticket3);
 			displayPaymentDetails(payment3);
 
+			/*
+			 * Deleting a package: deletePackage by passing packageId
+			 * 
+			 * */
 			System.out.println();
 			System.out.println("Deleting a package: ");
 			Package deletePackage = packageService.deletePackage(pack3.getPackageId());
 			displayPackage(deletePackage);
 
+			/*
+			 * Searching a package: searchPackage by passing packageId
+			 * 
+			 * */
 			System.out.println();
 			System.out.println("Searching a package: ");
 			Package searchPackage = packageService.searchPackage(pack1.getPackageId());
 			displayPackage(searchPackage);
 
+			/*
+			 * Viewing all packages
+			 * 
+			 * */
 			System.out.println();
 			System.out.println("Viewing all packages: ");
 			List<Package> viewAllPackages = packageService.viewAllPackages();
@@ -176,6 +253,10 @@ public class PackageUI {
 
 	}
 
+	/*
+	 * Displaying a Package 
+	 * 
+	 * */
 	public void displayPackage(Package pack) {
 
 		System.out.println();
@@ -185,6 +266,10 @@ public class PackageUI {
 
 	}
 
+	/*
+	 * Displaying a Hotel 
+	 * 
+	 * */
 	public void displayHotel(Hotel hotel) {
 
 		System.out.println(
@@ -193,12 +278,20 @@ public class PackageUI {
 						+ hotel.getAddress() + " hotelRent: " + hotel.getRent() + " hotelStatus: " + hotel.getStatus());
 	}
 
+	/*
+	 * Displaying a TicketDetail
+	 * 
+	 * */
 	public void displayTicketDetails(TicketDetails ticket) {
 
 		System.out.println("ticketId: " + ticket.getTicketId() + " route: " + ticket.getRoute() + " ticketStatus: "
 				+ ticket.getStatus());
 	}
 
+	/*
+	 * Displaying a PaymentDetail
+	 * 
+	 * */
 	public void displayPaymentDetails(PaymentDetails payment) {
 
 		System.out.println("paymentId: " + payment.getPaymentId() + " paymentMode: " + payment.getPaymentMode()
@@ -208,6 +301,10 @@ public class PackageUI {
 
 	}
 
+	/*
+	 * Displaying all Packages
+	 * 
+	 * */
 	public void displayAllPackages(Collection<Package> packs) {
 
 		for (Package pack : packs) {
@@ -216,6 +313,10 @@ public class PackageUI {
 		}
 	}
 
+	/*
+	 * Displaying all Hotels
+	 * 
+	 * */
 	public void displayAllHotels(Collection<Hotel> hotels) {
 
 		for (Hotel hotel : hotels) {
@@ -224,6 +325,10 @@ public class PackageUI {
 		}
 	}
 
+	/*
+	 * Displaying all TicketDetails
+	 * 
+	 * */
 	public void displayAllTicketDetails(Collection<TicketDetails> tickets) {
 
 		for (TicketDetails ticket : tickets) {
@@ -232,6 +337,10 @@ public class PackageUI {
 		}
 	}
 
+	/*
+	 * Displaying all PaymentDetails
+	 * 
+	 * */
 	public void displayAllPaymentDetails(Collection<PaymentDetails> payments) {
 
 		for (PaymentDetails payment : payments) {

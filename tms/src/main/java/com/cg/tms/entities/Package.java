@@ -112,9 +112,10 @@ public class Package {
 
 	@Override
 	public String toString() {
-
+		
 		return "Package [packageId=" + packageId + ", packageName=" + packageName + ", packageDescription="
-				+ packageDescription + ", packageType=" + packageType + ", packageCost=" + packageCost + "]";
+				+ packageDescription + ", packageType=" + packageType + ", packageCost=" + packageCost + ", payment="
+				+ payment + ", ticket=" + ticket + ", hotel=" + hotel + "]";
 	}
 
 	@Override

@@ -16,6 +16,14 @@ public class PackageServiceImpl implements IPackageService {
 	@Autowired
 	private IPackageRepository packageRepository;
 
+	/*
+	 * 
+	 * Adds a Package to the database after validation
+	 * 
+	 * @param pack is Package
+	 * @return saved Package
+	 * 
+	 * */
 	@Transactional
 	@Override
 	public Package addPackage(Package pack) {
@@ -25,6 +33,14 @@ public class PackageServiceImpl implements IPackageService {
 		return saved;
 	}
 
+	/*
+	 * 
+	 * Deletes a Package from the database after validation based on packageId
+	 * 
+	 * @param packageId is Package Id
+	 * @return deleted Package
+	 * 
+	 * */
 	@Transactional
 	@Override
 	public Package deletePackage(int packageId) throws PackageNotFoundException {
@@ -35,6 +51,14 @@ public class PackageServiceImpl implements IPackageService {
 		return pack;
 	}
 
+	/*
+	 * 
+	 * Searches a Package from the database after validation based on packageId
+	 * 
+	 * @param packageId is Package Id
+	 * @return searched Package
+	 * 
+	 * */
 	@Override
 	public Package searchPackage(int packageId) throws PackageNotFoundException {
 
@@ -48,6 +72,13 @@ public class PackageServiceImpl implements IPackageService {
 
 	}
 
+	/*
+	 * 
+	 * All Packages viewable
+	 * 
+	 * @return List of all Packages
+	 * 
+	 * */
 	@Override
 	public List<Package> viewAllPackages() {
 
@@ -57,6 +88,14 @@ public class PackageServiceImpl implements IPackageService {
 
 	}
 
+	/*
+	 * 
+	 * Validates Package Id in Package
+	 * 
+	 * @param packageId is a data member of Package
+	 * @return void
+	 * 
+	 * */
 	public void validatePackageId(int packageId) {
 
 		if (packageId < 0) {
@@ -65,6 +104,14 @@ public class PackageServiceImpl implements IPackageService {
 		}
 	}
 
+	/*
+	 * 
+	 * Validates Package Name in Package
+	 * 
+	 * @param packageName is a data member of Package
+	 * @return void
+	 * 
+	 * */
 	public void validatePackageName(String packageName) {
 
 		if (packageName == null || packageName.isEmpty() || packageName.trim().isEmpty()) {
@@ -73,6 +120,14 @@ public class PackageServiceImpl implements IPackageService {
 		}
 	}
 
+	/*
+	 * 
+	 * Validates Package Description in Package
+	 * 
+	 * @param packageDescription is a data member of Package
+	 * @return void
+	 * 
+	 * */
 	public void validatePackageDescription(String packageDescription) {
 
 		if (packageDescription == null || packageDescription.isEmpty() || packageDescription.trim().isEmpty()
@@ -82,6 +137,14 @@ public class PackageServiceImpl implements IPackageService {
 		}
 	}
 
+	/*
+	 * 
+	 * Validates Package Type in Package
+	 * 
+	 * @param packageType is a data member of Package
+	 * @return void
+	 * 
+	 * */
 	public void validatePackageType(String packageType) {
 
 		if (packageType == null || packageType.isEmpty() || packageType.trim().isEmpty() || packageType.length() > 10) {
@@ -90,6 +153,15 @@ public class PackageServiceImpl implements IPackageService {
 		}
 	}
 
+
+	/*
+	 * 
+	 * Validates a Package 
+	 * 
+	 * @param pack is Package
+	 * @return void
+	 * 
+	 * */
 	public void validatePackage(Package pack) {
 
 		validatePackageName(pack.getPackageName());

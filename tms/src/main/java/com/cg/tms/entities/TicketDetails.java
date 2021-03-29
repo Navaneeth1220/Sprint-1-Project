@@ -11,7 +11,7 @@ import javax.persistence.OneToOne;
 public class TicketDetails {
 
 	@Id
-	@Column(unique=true)
+	@Column(unique = true)
 	private String ticketId;
 
 	@OneToOne
@@ -55,7 +55,7 @@ public class TicketDetails {
 	@Override
 	public String toString() {
 
-		return "TicketDetails [ticketId=" + ticketId + ", status=" + status + "]";
+		return "TicketDetails [ticketId=" + ticketId + ", route=" + route + ", status=" + status + "]";
 	}
 
 	@Override
