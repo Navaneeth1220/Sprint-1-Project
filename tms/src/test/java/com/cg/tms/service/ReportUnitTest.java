@@ -6,6 +6,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Assertions;
@@ -97,6 +98,51 @@ class ReportUnitTest {
 		
 		
 	}
+	 // Deleting success scenario 
+	 
+	
+	@Test
+	void deleteReportTest_1() {
+		int id =1;
+		Report report=mock(Report.class);
+		Optional<Report> optional = Optional.of(report);
+		Mockito.when(repository.findById(id)).thenReturn(optional);
+		Mockito.when(repository.delete(report)).thenReturn(Optional.empty());
+		doNothing().when(service).validateId(id);
+		doNothing().when(repository).delete(report);
+		Report result = service.deleteReport(id);
+		Assertions.assertNotNull(optional);
+		Assertions.assertEquals(report,result);
+		verify(repository).delete(result);
+	}
+	
+	
+	/*
+	  Scenario id not found for deleting. Delete failed
+	 */
+	@Test
+	void deleteReportTest_2() {
+		int id=1;
+		Optional<Report> optional = Optional.empty();
+		when(repository.findById(id)).thenReturn(optional);
+		Executable executable = () -> service.viewReport(id);
+		Assertions.assertThrows(ReportNotFoundException.class, executable);
+	}
+	/*Scenario List of all bookings
+	 */
+	@Test
+	void viewAllReports_Test_1() {
+		List<Report> bookings = mock(List.class);
+		when(repository.findAll()).thenReturn(bookings);
+		List<Report> result=repository.findAll();
+		Assertions.assertSame(bookings, result);
+		verify(repository).findAll();
+		
+	}
+	
+	
+
+	
 	
 
 }
