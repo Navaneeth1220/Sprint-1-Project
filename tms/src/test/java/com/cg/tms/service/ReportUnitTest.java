@@ -132,10 +132,10 @@ class ReportUnitTest {
 	 */
 	@Test
 	void viewAllReports_Test_1() {
-		List<Report> bookings = mock(List.class);
-		when(repository.findAll()).thenReturn(bookings);
+		List<Report> reportss = mock(List.class);
+		when(repository.findAll()).thenReturn(reportss);
 		List<Report> result=repository.findAll();
-		Assertions.assertSame(bookings, result);
+		Assertions.assertSame(reportss, result);
 		verify(repository).findAll();
 		
 	}
