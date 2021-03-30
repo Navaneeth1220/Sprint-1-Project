@@ -4,6 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
+import com.cg.tms.ManualTesting.ReportManualTest;
+
 
 
 
@@ -14,6 +16,7 @@ public class TripBookingBoot {
 	
 	ConfigurableApplicationContext context = SpringApplication.run(TripBookingBoot.class, args);
 	//HotelUI room = context.getBean(HotelUI.class);
-	//room.start();
+	ReportManualTest room = context.getBean(ReportManualTest.class);
+	room.start();
 	}
 }

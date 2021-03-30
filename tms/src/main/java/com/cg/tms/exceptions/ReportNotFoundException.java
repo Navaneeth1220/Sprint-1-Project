@@ -1,7 +1,7 @@
 package com.cg.tms.exceptions;
 
-@SuppressWarnings("serial")
-public class ReportNotFoundException extends Exception {
+
+public class ReportNotFoundException extends RuntimeException {
 	public ReportNotFoundException(String msg) {
 		super(msg);
 	}

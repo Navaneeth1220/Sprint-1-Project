@@ -42,8 +42,8 @@ class ReportUnitTest {
 		Report report = new Report( reportType,reportName);
 		Report saved = mock(Report.class);
 		Mockito.when(repository.save(report)).thenReturn(saved);
-		//doNothing().when(service).validateReportType(reportType);
-		//doNothing().when(service).validateReportName(reportName);
+		doNothing().when(service).validateReportType(report.getReportType());
+		doNothing().when(service).validateReportName(report.getReportName());
 		Report result = service.addReport(report);
 		
 		Assertions.assertNotNull(result);
@@ -53,7 +53,7 @@ class ReportUnitTest {
 	
 	}
 	@Test
-	void testMake_3() {
+	void testMake_2() {
 		String ReportType="";
 		Report report = new Report(ReportType,"TripDetails");
 		Executable executable = ()->service.addReport(report);
@@ -63,7 +63,7 @@ class ReportUnitTest {
 	
 
 	@Test
-	void testMake_4() {
+	void testMake_3() {
 		String ReportName="";
 		Report report = new Report("ParisTrip",ReportName);
 		Executable executable = ()->service.addReport(report);
@@ -107,7 +107,7 @@ class ReportUnitTest {
 		Report report=mock(Report.class);
 		Optional<Report> optional = Optional.of(report);
 		Mockito.when(repository.findById(id)).thenReturn(optional);
-		Mockito.when(repository.delete(report)).thenReturn(Optional.empty());
+		//Mockito.when(repository.delete(report)).thenReturn(Optional.empty());
 		doNothing().when(service).validateId(id);
 		doNothing().when(repository).delete(report);
 		Report result = service.deleteReport(id);
